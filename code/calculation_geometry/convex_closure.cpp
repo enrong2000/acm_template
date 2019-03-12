@@ -1,5 +1,9 @@
 #include "base.cpp"
-
+/*
+Target: 通过一系列平面上的点构造一个凸包
+Declaration:
+    point_vec build_convex_closure (point_vec s);
+*/
 
 bool cmp(const point &a, const point &b) {
     int c = cross_product(a - base_p, b - base_p);
@@ -11,14 +15,18 @@ bool cmp(const point &a, const point &b) {
 }
 point base_p;  //==s[base]
 
-///利用Graham算法构造凸包
-/// complexity: O(n*logn)
-/// 依赖函数:
-///  bool cmp(const point &a, const point &b);
-///  vec2d operator -(const point &a, const point &b) ;
-///  int cross_product(const vec2d &a, const vec2d &b);
-/// 辅助变量:
-///  point base_p;
+/*
+Dependencies:
+    bool cmp(const point &a, const point &b);
+    vec2d operator -(const point &a, const point &b) ;
+    int cross_product(const vec2d &a, const vec2d &b);
+    point base_p;
+Algorithm: Graham
+Time Complexity: O(nlogn)
+Space Complexity: O(n)
+Remarks: 参数会被修改
+Author: Frank
+*/
 point_vec build_convex_closure_graham(/*const */ point_vec &s) {
     if (s.size() == 1 || s.size() == 2)
         return point_vec(s);
