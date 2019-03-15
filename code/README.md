@@ -11,6 +11,7 @@
 * 计算几何(calculation_geometry)
 * 图论(graph_theory)
 * 数论(number_theory)
+* 字符串处理(string_processing)
 
 ## 规范
 
