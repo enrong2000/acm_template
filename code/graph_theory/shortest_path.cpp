@@ -10,15 +10,15 @@ Declaration:
     vector<int, vector<int> > shortest_path(weighted_graph &g);
 */
 
-#define declare_reserve_vector(type, x, size) \
+#define declare_resize_vector(type, x, size) \
     std::vector<type> x;\
-    x.reserve(size)
+    x.resize(size)
 
 #define start_SPFA                                                                       \
     /*dist 为最终结果；cnt为入队次数，用于判定是否存在负权回路*/ \
-    declare_reserve_vector(int, dist, g.size());                                         \
-    declare_reserve_vector(int, cnt, g.size());                                          \
-    declare_reserve_vector(bool, visited, g.size());                                     \
+    declare_resize_vector(int, dist, g.size());                                         \
+    declare_resize_vector(int, cnt, g.size());                                          \
+    declare_resize_vector(bool, visited, g.size());                                     \
     std::queue<int> joblist;                                                             \
     memset(dist.data(), 127, sizeof(int) * g.size());                                    \
     /*01111111011111110111111101111111[2] == 2139062143[10]*/                            \
@@ -80,7 +80,7 @@ std::vector<int> shortest_path_SPFA(int source, weighted_graph &g) {
 
 /*
 Dependencies:
-    #define declare_reserve_vector
+    #define declare_resize_vector
 Algorithm: Dijkstra(堆优化)
 Time Complexity: O(E*logE)
 Remarks: 
@@ -91,8 +91,8 @@ std::vector<int> shortest_path_dijkstra_heap_optimized(int source, weighted_grap
         int cost, pos;
         bool operator<(const node &b) const { return cost < b.cost; }
     };
-    declare_reserve_vector(int, dist, g.size());
-    declare_reserve_vector(bool, visited, g.size());
+    declare_resize_vector(int, dist, g.size());
+    declare_resize_vector(bool, visited, g.size());
     std::priority_queue<node> heap;
     memset(dist.data(), 127, sizeof(int) * dist.size());
     dist[source] = 0;
